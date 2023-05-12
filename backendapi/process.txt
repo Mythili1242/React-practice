@@ -1,0 +1,137 @@
+1) npm init
+    entry point-server.js
+    license-mit
+
+2)npm i express mongoose
+to handle routing,we need express
+mongodb for connecting mongodb atlas from localhost
+
+3)npm i -D nodemon
+for autosaving
+
+4)create server.js file
+const express=require('express');
+const app=express();
+
+
+app.get('/',(req,res)=>{
+    res.send("hello world")
+})
+app.listen(3222,()=>console.log("server running"))
+
+6)to run it we need to add scripts in package.json
+ "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node server.js",               //npm run start-to start the server
+    "server":"nodemon server.js"            //npm run server-to run server using nodemon 
+  },
+
+7)npm run server
+
+> backendapi@1.0.0 server
+> nodemon server.js
+
+[nodemon] 2.0.22
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `node server.js`
+server running
+
+8)http://localhost:3222 on chrome gives hello world as output
+
+9)open mongodb
+in database,select connect option->connect ur app->copy script to connect to db from localhost
+
+10)in server.js
+const mongoose=require("mongoose")
+mongoose.connect('mongodb+srv://Mythili:<password>@atlascluster.roimqdb.mongodb.net/?retryWrites=true&w=majority')
+replace with pwd
+mongoose.connect('mongodb+srv://Mythili:0aBaXezG4PiUmXjE@atlascluster.roimqdb.mongodb.net/?retryWrites=true&w=majority').then(()=>console.log("Db connected..."))
+.catch(err=>console.log(err))
+
+to remove deprecation warnings add these
+mongoose.connect('mongodb+srv://Mythili:0aBaXezG4PiUmXjE@atlascluster.roimqdb.mongodb.net/?retryWrites=true&w=majority',{useUnifiedTopology:true,
+useNewUrlParser:true})
+.then(()=>console.log("Db connected..."))
+.catch(err=>console.log(err))
+
+11)create schema which is a model for our db-the way we would like to post database
+create model.js file
+const mongoose=require("mongoose")
+const BrandName=mongoose.Schema({
+    brandname:{
+        type:String,
+        required:true
+    },
+    date:{
+        type:Date,
+        default:Date.now      //consider present date
+    }
+})
+module.exports=mongoose.model("brandname",BrandName) //1st arg is name of the file in db and 2nd is schema name
+
+12)import schema in server.js
+const BrandName=require("./model")
+
+13)post 
+use async==to handle delays,await==waits until it is added then only next operations will be performed
+
+data in json format that we are sending,to be handled by the code in local server,we have to use express.json as middleware
+app.use(express.json())    //this is middleware.also called as bodyparser
+  
+create object based on schema to store data received from req.body
+
+app.post("/addbrands",async(req,res)=>{
+    const {brandname}=req.body;
+    try{
+        const newData=new BrandName({brandname})   //brandname is property value we received from user;Brandname is schema
+        await newData.save();   //to save in db
+        return res.json(await BrandName.find())      //after saving return a response-send all data stored in db using find.use json instead of send method as apis are in json format
+    }
+    catch(err){
+console.log(err.message);
+    }
+})
+
+open postman and connect to http://localhost:3222/addbrands and give body as 
+{
+    "brandname":"honor"
+}
+ data will be added to db
+
+14)get
+app.get('/getallbrands',async(req,res)=>{
+  try{
+const allData=await BrandName.find();
+return res.json(allData)
+  }
+  catch(err){
+    console.log(err.message);
+  }
+})
+
+
+15)get by id using path params
+
+app.get("/getallbrands/:id",async (req,res)=>{
+    try{
+const data=await BrandName.findById(req.params.id)
+return res.json(data)
+    }
+    catch(err){
+        console.log(err.message);
+    }
+})
+
+16)delete
+
+app.delete("/deletebrand/:id",async (req,res)=>{
+    try{
+await BrandName.findByIdAndDelete(req.params.id)
+return res.json(await BrandName.find())
+    }
+    catch(err){
+        console.log(err.message);
+    }
+})

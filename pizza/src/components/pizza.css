@@ -1,0 +1,90 @@
+/* .pizza-container {
+    padding: 20px;
+    border-radius: 10px;
+    border: 20px solid var(--white);
+    background-color: #efdabc;
+    background-size: cover;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.16) inset, var(--shadow);
+} */
+
+.pizza {
+    position: relative;
+    width: 40%;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    background: linear-gradient(transparent 49.85%, rgba(0, 0, 0, 0.04) 49.85%, rgba(0, 0, 0, 0.04) 50.15%, transparent 50.15%),
+    linear-gradient(90deg, transparent 49.85%, rgba(0, 0, 0, 0.04) 49.85%, rgba(0, 0, 0, 0.04) 50.15%, transparent 50.15%),
+    linear-gradient(45deg, transparent 49.85%, rgba(0, 0, 0, 0.04) 49.85%, rgba(0, 0, 0, 0.04) 50.15%, transparent 50.15%),
+    linear-gradient(-45deg, transparent 49.85%, rgba(0, 0, 0, 0.04) 49.85%, rgba(0, 0, 0, 0.04) 50.15%, transparent 50.15%),
+    radial-gradient(circle, #fcfc8f, #fdfd81 59.5%, #c79d81 60%, #836551 70%);
+}
+
+.pizza::after {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+}
+
+
+
+h3 {
+    text-align: center;
+  }
+  
+  .topping {
+    margin-top: 0.3rem;
+    vertical-align: text-bottom;
+  }
+  
+  .result {
+    margin-top: 1rem;
+  }
+  
+  .toppings-list,
+  .total {
+    width: 30%;
+    margin: 0 auto;
+  }
+  
+  .toppings-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .toppings-list li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .toppings-list-item {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .toppings-list li:last-child {
+    border-top: 1px solid #ccc;
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+  
+  .toppings-list-item label {
+    vertical-align: text-bottom;
+    margin-left: 0.2rem;
+  }
+  
+  .total {
+    margin-top: 1rem;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .toppings-list,
+    .total {
+      width: 90%;
+    }
+  }
+  
+
+
+  .row {
+    display: inline-block
+  }
+  
