@@ -1,12 +1,12 @@
 const restmodel=require("../models/model")
 const usermodel=require("../models/model1")
 const itemsmodel=require("../models/model2")
-
+const {verify}=require("jsonwebtoken")
 
 const {hash,compare}=require("bcryptjs")
 // require("dotenv/config")
 const {createAccessToken,createRefreshToken,sendAccessToken,sendRefreshToken}=require("./tokens")
-const { verify } = require("jsonwebtoken")
+
 
 const getlist=async (req,res,next)=>{
 try{
@@ -29,6 +29,31 @@ const postuser=async (req,res,next)=>{
         console.log(err)
     }
 }
+
+//admin
+const postrest=async(req,res,next)=>{
+    try{
+        console.log(req.body);
+        await restmodel.create({...req.body}).then(res=>console.log(res)).catch(err=>console.log(err));
+        return res.send("Restaurant added")
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+//admin
+const postmenu=async(req,res,next)=>{
+    try{
+        console.log(req.body);
+        await itemsmodel.create({...req.body}).then(res=>console.log(res)).catch(err=>console.log(err));
+        return res.send("Menu added")
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
 
 const loginuser=async (req,res,next)=>{
     const {email,password}=req.body;
@@ -92,4 +117,39 @@ const items=async (req,res,next)=>{
     }
 }
 
-module.exports={getlist,postuser,loginuser,refresh,logout,items}
+
+const protected=async (req,res,next)=>{
+    try{
+       
+      const authorization=req.headers['authorization'];
+    //   console.log(authorization)
+      if(!authorization) throw new Error("You need to login");
+      const token=authorization.split(' ')[1];
+    //   console.log(token)
+      const {firstname}=verify(token,process.env.ACCESS_TOKEN_SECRET) 
+console.log(firstname);
+  
+  if(firstname!=null){
+    if(firstname=="admin"){
+        console.log("authorized")
+    res.send({
+        data:"authorized"
+    })
+}
+else{
+    console.log("not authorized")
+    res.send({
+        data:"not authorized"
+    })
+}
+  }
+  
+    }
+    catch(err){
+        res.send({
+            error:`${err.message}`
+        })
+    }
+}
+
+module.exports={getlist,postuser,loginuser,refresh,logout,items,protected,postrest,postmenu}

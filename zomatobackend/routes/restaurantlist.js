@@ -9,6 +9,8 @@ router.post("/sign",cont.postuser)
 router.post("/login",cont.loginuser)
 router.post("/refresh",cont.refresh)
 router.post("/logout",cont.logout)
-
+router.post("/protected",cont.protected)
+router.post("/postrest",cont.postrest)
+router.post("/postmenu",cont.postmenu)
 
 module.exports=router;
