@@ -1,0 +1,31 @@
+.scooter-container {
+    position: fixed;
+    bottom: 20px;
+    right: -100px;
+    animation: scooterMove 3s infinite;
+  }
+  
+  @keyframes scooterMove {
+    0% {
+      right: -100px;
+    }
+    50% {
+      right: 50px;
+    }
+    100% {
+      right: -100px;
+    }
+  }
+  
+  .scooter-image {
+    width: 80px;
+    height: auto;
+  }
+  
+  .hurry-up {
+    background-color: yellow;
+    color: red;
+    padding: 5px;
+    font-weight: bold;
+  }
+  

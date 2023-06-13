@@ -1,12 +1,31 @@
-import Comp1 from "./components/comp1";
-import Comp2 from "./components/comp2";
+import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
+import CartPage from './components/CartPage';
+import HomePage from './components/HomePage';
+
 
 function App() {
  
   return (
  <>
-<Comp1 />
-<Comp2 />
+ <nav>
+          <ul>
+            <li>
+              <a href='/'>Home</a>
+            </li>
+            <li>
+              <a href='/cart'>Cart</a>
+            </li>
+          </ul>
+        </nav>
+
+  <Router>
+  <Routes>
+    <Route path='/' element={<HomePage />} />
+    <Route path='/cart' element={<CartPage />} />
+    </Routes>
+  </Router>
+
+
  </>
   );
 }

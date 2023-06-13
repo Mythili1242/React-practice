@@ -25,7 +25,7 @@ componentDidUpdate(){
         if(this.state.show){
             myHeader=<Child />
         }
-
+            
         return(
             <div>
                 {myHeader}
