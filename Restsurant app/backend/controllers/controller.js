@@ -126,7 +126,7 @@ const user=await cartmodel.findOne({email:email})
         const items = req.body.cartitems.map(item => ({...item }));
        console.log(items)
         await cartmodel.updateMany({email:email,items:items});
-     //   console.log("updated")
+     //   console.log("updated")  
         res.send("item updated")
     }
     else{

@@ -2,28 +2,32 @@ import React from "react";
 import { View,Text,SafeAreaView,StyleSheet } from "react-native";
 //https://icons.expo.fyi/
 import { Feather } from '@expo/vector-icons';
+import RowText from "../components/RowText";
+import { weatherType } from "../utilities/Weathertype";
 
 const CurrentWeather=()=>{
-
+const {wrapper,container,temp,feels,highlowwrapper,highlow,bodyWrapper,description,message}=styles;
 return(
-  <SafeAreaView style={styles.wrapper}>   
+  <SafeAreaView style={wrapper}>   
     {/* SafeAreaView-to render content within the safe area boundaries of a device */}
-     <View style={styles.container}>
+     <View style={container}>
       {/* <View style={{backgroundColor:"pink"}}> */}  
       {/* use stylesheet instead of inline styling as it is a standard approach */}
     {/* <Text>Current Weather</Text> */}
     <Feather name="sun" size={100} color="black" />
-    <Text style={styles.temp}>6</Text>
-    <Text style={styles.feels}>Feels like 5</Text>
-    <View style={styles.highlowwrapper}>
+    <Text style={temp}>6</Text>
+    <Text style={feels}>Feels like 5</Text>
+    <RowText messageOne={"high:8"} messagetwo={"Low:6"} containerStyles={highlowwrapper} messageOneStyles={highlow} messagetwoStyles={highlow}/>
+    {/* <View style={styles.highlowwrapper}>
     <Text style={styles.highlow}>High:8 </Text>
     <Text style={styles.highlow}>Low:6</Text>
+    </View> */}
     </View>
-    </View>
-    <View style={styles.bodyWrapper}>
+    <RowText messageOne={"It's sunny"} messageTwo={weatherType['Thunderstorm'].message} containerStyles={styles.bodyWrapper} messageOneStyles={styles.description} messagetwoStyles={styles.message}/>
+    {/* <View style={styles.bodyWrapper}>
       <Text style={styles.description}>It's Sunny</Text>
       <Text style={styles.message}>It's perfect t-shirt weather</Text>
-    </View>
+    </View> */}
  
   </SafeAreaView>
  
