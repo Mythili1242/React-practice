@@ -1,0 +1,6 @@
+2 features:
+state mgmt
+life cycle feature
+
+2019-react 16.8 version-introduced
+ 
