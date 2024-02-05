@@ -1,0 +1,8 @@
+{
+    "json.schemas": [
+
+    ],
+    "eslint.workingDirectories": [
+        {"mode": "auto"}
+    ],
+}

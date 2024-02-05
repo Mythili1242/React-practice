@@ -119,4 +119,3 @@ navigate("/admin")
 }
 
 export default Admin;
-

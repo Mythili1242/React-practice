@@ -23,20 +23,44 @@
 //   },
 // });
 
+import React, { useState, useEffect } from "react"
+import { ActivityIndicator, View, StyleSheet } from "react-native"
+import { NavigationContainer } from "@react-navigation/native"
+import Tabs from "./src/components/Tabs"
+import * as Location from "expo-location"
+import { useGetWeather } from "./src/hooks/useGetWeather"
+// import { TEST_KEY } from '@env'
+// import { TEST_KEY } from "react-native-dotenv"
 
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import Tabs from "./src/components/Tabs";
+//api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+const App = () => {
+  // console.log(TEST_KEY)
+
+  const [loading, error, weather] = useGetWeather()
+  console.log(loading, error, weather)
+
+  if (weather && weather.list) {
+    return (
+      <NavigationContainer>
+        <Tabs weather={weather} />
+      </NavigationContainer>
+    )
+  }
 
 
-
-const App=()=>{
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size={"large"} color={"blue"} />
+      </View>
+    )
   
-return(
-  <NavigationContainer>
-   <Tabs />
-</NavigationContainer>
-) 
-}
 
-export default App;
+  
+}
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    flex: 1
+  }
+})
+export default App

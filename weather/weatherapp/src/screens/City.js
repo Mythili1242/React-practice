@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -25,7 +25,6 @@ const City = () => {
         <View style={[riseSetWrapper,rowLayout]}>
             <IconText iconName={"sunrise"} iconColor={"white"} bodyText={"10:46:58 AM"} bodyTextStyles={riseSetText}/>
             <IconText iconName={"sunset"} iconColor={"white"} bodyText={"17:28:15 PM"} bodyTextStyles={riseSetText}/>
-          
         </View>
       </ImageBackground>
     </SafeAreaView>
@@ -78,4 +77,4 @@ color:"white",
     alignItems:"center"
   }
 })
-export default City
+export default City;
