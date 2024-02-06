@@ -1,0 +1,6 @@
+>cd server
+npm init
+npm i bcryptjs cookie-parser cors dotenv express jsonwebtoken
+npm i nodemon --save-dev
+first create .env 
+ npm i @reach/router eslint-plugin-react-hooks
