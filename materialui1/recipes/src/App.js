@@ -1,4 +1,3 @@
-
 // import { Container, Divider } from '@mui/material';
 // import './App.css';
 // import Header from './components/Header';
@@ -7,6 +6,8 @@
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
 import Home from './components/Home';
 import Instructions from './components/Instructions';
+import Accounts from './components/Accounts';
+import SignUp from './components/SignUp';
 function App() {
   // const app_id="a56b2ae5";
   // const app_key="f7905207d19c7836db0716c7887dbb37"
@@ -31,6 +32,8 @@ function App() {
     <Routes>
       <Route path='/' element={<Home />} > </Route>
       <Route path='/instructions' element={<Instructions />} > </Route>
+      <Route path='/accounts' element={<Accounts />} />   
+      <Route path='/signup' element={<SignUp />} /> 
     </Routes>
    </Router>
    {/* <Container>
@@ -44,6 +47,3 @@ function App() {
 }
 
 export default App;
-
-
-

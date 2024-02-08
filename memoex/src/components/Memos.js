@@ -63,5 +63,3 @@ const slowfunction=(number)=>{
 }
 
 export default Memos
-
-

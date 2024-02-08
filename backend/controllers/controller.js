@@ -19,7 +19,7 @@ catch(err){
     console.log(err.message);
 }
 }
-
+ 
 const postuser=async (req,res,next)=>{
     try{
         console.log(req.body)

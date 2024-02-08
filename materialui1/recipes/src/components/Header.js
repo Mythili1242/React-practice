@@ -13,6 +13,12 @@ import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import {InputAdornment} from "@mui/material";
 import {TextField} from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import {Select} from '@mui/material';
+import {  Menu, MenuItem } from '@mui/material';
+
+
+
 const useStyles=makeStyles({
   cursor_prop:{
     cursor:"pointer"
@@ -84,8 +90,24 @@ const navigate=useNavigate();
         // console.log(event.target.value); 
   //       event.preventDefault(); // Prevent the default behavior of the click event
   // event.stopPropagation();
-        setName(event.target.value)}
+        setName(event.target.value)
+      }
+    
+        const [anchorEl, setAnchorEl] = useState(null);
+
+        const handleClick1 = (event) => {
+          setAnchorEl(event.currentTarget);
+          console.log(event.currentTarget)
+        };
       
+        const handleClose = () => {
+          setAnchorEl(null);
+        };
+
+        const navSignup=()=>{
+          navigate("/signup")
+        }
+
   return (
     <>
     <Toolbar >
@@ -124,6 +146,22 @@ const navigate=useNavigate();
     )
   }}
 />
+
+<IconButton onClick={handleClick1 }>
+  <AccountCircleIcon />
+</IconButton>
+<Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={()=>{handleClose();navSignup()}}>SignUp</MenuItem>
+        <MenuItem onClick={()=>{handleClose()}}>Login</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
+    
+
+
     </Toolbar>
     </>
   )
